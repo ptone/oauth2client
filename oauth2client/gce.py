@@ -83,7 +83,7 @@ class AppAssertionCredentials(AssertionCredentials):
     response, content = http_request(uri)
     if response.status == 200:
       try:
-        d = json.loads(content)
+        d = json.loads(content.decode('UTF-8'))
       except Exception as e:
         raise AccessTokenRefreshError(str(e))
       self.access_token = d['accessToken']
